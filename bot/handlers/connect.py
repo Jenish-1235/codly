@@ -1,7 +1,7 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 
-BACKEND_BASE_URL = "https://4c5c34e2f8a5.ngrok-free.app"  # Update if deployed
+BACKEND_BASE_URL = "https://9deaffb960ba.ngrok-free.app"  # Update if deployed
 
 async def connect_github(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
