@@ -4,6 +4,7 @@ import os
 import httpx
 from urllib.parse import urlencode
 from dotenv import load_dotenv
+from db.user import save_user_token
 
 load_dotenv()
 router = APIRouter()
@@ -54,10 +55,6 @@ async def github_callback(code: str, state: str):
         gh_user = user_resp.json()
         github_username = gh_user.get("login")
 
-    # Store token (replace with DB call)
-    OAUTH_SESSIONS[state] = {
-        "access_token": access_token,
-        "github_username": github_username
-    }
+    save_user_token(int(state), access_token, github_username)
 
     return HTMLResponse(f"<h3>✅ GitHub Connected as {github_username}. You may return to Telegram.</h3>")
